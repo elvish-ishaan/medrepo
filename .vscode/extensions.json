@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "bracketpaircolordlw.bracket-pair-color-dlw",
+      "dsznajder.es7-react-js-snippets",
+      "bradlc.vscode-tailwindcss",
+    ]
+  }
+  

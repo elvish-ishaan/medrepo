@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String?
+  firstName String?
+  lastName  String?
+  phone     String?
+  age       Int?
+  records   Report[]
+  recents   RecentActivities[]
+  healthPoints healthPointGraph[]
+  profileCode Int?
+}
+
+model Dailymatrics {
+  id        String @id @default(uuid())
+  bp        Int
+  sugar     Int
+  heartRate Int
+}
+
+model Report {
+  id        String @id @default(uuid())
+  mType     docType
+  date      String
+  imageUrl  String
+  insights  String
+  user      User?  @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  userEmail String?  
+}
+
+enum docType {
+  Report
+  Medicine
+  Diagnosis
+}
+
+model RecentActivities {
+  id String @id @default(uuid())
+  date String
+  uploadType docType
+  user User? @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  userEmail String?  
+}
+
+model healthPointGraph {
+  id String @id @default(uuid())
+  healthMonth Int   
+  healthDay   Int   @default(25) //fix this             
+  yearValue Int
+  points Int 
+  user User? @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  userEmail String?  
+}
