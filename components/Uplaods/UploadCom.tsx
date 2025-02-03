@@ -98,8 +98,10 @@ export default function UploadCom() {
         }
 
         // Upload image to the bucket
+        // Upload image to the bucket
         const imgData = new FormData()
-        imgData.append('image', uploadData.image)
+        imgData.append('image', uploadData.image as Blob)
+
         const UploadUrl = await uploadFileAws(imgData)
 
         if (!UploadUrl?.success) {
@@ -110,11 +112,11 @@ export default function UploadCom() {
             return
         }
 
-        // Appending form data
+        // Appending form data safely
         const formData = new FormData()
-        formData.append('type', uploadData.type as string)
-        formData.append('rawReport', rawReport)
-        formData.append('imageUrl', UploadUrl.key)
+        formData.append('type', uploadData.type?.toString() ?? '')
+        formData.append('rawReport', rawReport || '')
+        formData.append('imageUrl', UploadUrl.key ?? '')
 
         try {
             const res: Responce = await axios.post('/api/uploads', formData, {
@@ -138,6 +140,7 @@ export default function UploadCom() {
             console.log(error)
         }
     }
+
     return (
         <Card className='w-full max-w-xl'>
             <CardHeader>
