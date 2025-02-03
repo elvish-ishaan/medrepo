@@ -11,7 +11,6 @@ import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Calendar, Clock, MapPin, Star, ThumbsUp } from 'lucide-react'
 import Link from 'next/link'
-import CheckoutCard from '@/components/payments/CheckoutCard'
 
 export default function page() {
     return (
@@ -65,8 +64,6 @@ export default function page() {
                         </div>
                     </CardContent>
                 </Card>
-                {/* checkout cared
-        <CheckoutCard/> */}
             </div>
 
             <Card>

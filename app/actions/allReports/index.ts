@@ -1,10 +1,8 @@
 'use server'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { getPoints } from '@/app/goai'
 import prisma from '@/lib/prismaClient'
 import { docType } from '@prisma/client'
 import { getServerSession } from 'next-auth/next'
-import { redirect } from 'next/navigation'
 
 export const getAllReports = async (rtype: docType) => {
     try {
