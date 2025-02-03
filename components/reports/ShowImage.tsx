@@ -6,9 +6,9 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
 import Link from 'next/link'
+import { getFileByKey } from '@/app/actions/fileOps'
 
 // Assume this function is imported from elsewhere in your project
-import { getFileByKey } from '@/lib/uploadFile'
 
 export default function ShowImage({ ImgLinkUrl }: { ImgLinkUrl: string }) {
     const [imageUrl, setImageUrl] = useState<string | null>(null)

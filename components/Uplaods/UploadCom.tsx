@@ -21,10 +21,10 @@ import { useSession } from 'next-auth/react'
 import { ChangeEvent, useState } from 'react'
 import axios from 'axios'
 import { performOCR } from '../../lib/performOCR'
-import { uploadFileAws } from '@/lib/uploadFile'
 import { toast, useToast } from '@/hooks/use-toast'
 import DeadBtn from '../auxComps/DeadBtn'
 import { docType } from '@prisma/client'
+import { uploadFileAws } from '@/app/actions/fileOps'
 
 enum UploadType {
     diagnosis = 'Diagnosis',
@@ -98,9 +98,12 @@ export default function UploadCom() {
         }
 
         // Upload image to the bucket
-        const UploadUrl = await uploadFileAws(uploadData.image)
+        const imgData = new FormData()
+        imgData.append('image', uploadData.image)
+        const UploadUrl = await uploadFileAws(imgData)
 
-        if (!UploadUrl) {
+        if (!UploadUrl?.success) {
+            setLoading(false)
             toast({
                 description: 'Something went wrong while uploading',
             })
