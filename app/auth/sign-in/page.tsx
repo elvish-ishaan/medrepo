@@ -42,13 +42,18 @@ export default function LoginPage() {
                 redirect: false,
                 email: formValues.email,
                 password: formValues.password,
-                callbackUrl,
             })
 
             setLoading(false)
+
+            if (res?.ok) {
+                router.push('/dashboard') // Redirect user to dashboard
+            } else {
+                setError(res?.error || 'Invalid credentials')
+            }
         } catch (error: any) {
             setLoading(false)
-            setError(error.message || 'An error occurred during sign in')
+            setError(error.message || 'An error occurred during sign-in')
         }
     }
 

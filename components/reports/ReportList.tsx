@@ -27,17 +27,8 @@ import Link from 'next/link'
 import { docType } from '@prisma/client'
 import Sharecom from '../shares/Sharecom'
 
-interface Report {
-    id: string // UUID
-    mType: 'Report' | 'Medicine' | 'Diagnosis' // Enum-like type for mType
-    date: string // ISO date string
-    imageUrl: string // URL of the image
-    insights: string // Description or insights about the report
-    userEmail: string // Email address of the user
-}
-
 export default async function ReportList() {
-    const domain = process.env.BASE_DOMAIN
+    const domain = process.env.PUBLIC_NEXT_BASE_DOMAIN
     let reports
     try {
         reports = await getAllReports(docType.Report)
