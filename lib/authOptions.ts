@@ -55,7 +55,7 @@ export const authOptions: NextAuthOptions = {
                             return {
                                 id: existingUser.id,
                                 email: existingUser.email,
-                                name: existingUser.firstName,
+                                name: existingUser.firstName ?? '',
                             }
                         }
                         throw new Error('Invalid credentials')
