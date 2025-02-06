@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import googlelogo from '@/app/assets/googleLogo.png'
 import {
     Card,
     CardContent,
@@ -15,6 +16,7 @@ import {
 } from '@/components/ui/card'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Eclipse, LoaderCircle, PersonStanding } from 'lucide-react'
+import Image from 'next/image'
 
 export default function LoginPage() {
     const router = useRouter()
@@ -144,7 +146,7 @@ export default function LoginPage() {
                         </div>
                     </div>
                     <Button
-                        className=' border-t-green-500 border-b-red-600 border-x-yellow-400'
+                        className=' bg-muted'
                         variant='outline'
                         type='button'
                         disabled={loading}
@@ -153,7 +155,13 @@ export default function LoginPage() {
                         {loading ? (
                             <LoaderCircle className='mr-2 h-4 w-4 animate-spin' />
                         ) : (
-                            <Eclipse className='mr-2 h-4 w-4' />
+                            <Image
+                                src={googlelogo}
+                                alt='google logo'
+                                height={14}
+                                width={14}
+                                className='mr-2'
+                            />
                         )}{' '}
                         Google
                     </Button>
