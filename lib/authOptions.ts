@@ -43,7 +43,7 @@ export const authOptions: NextAuthOptions = {
                 const { email, password } = credentials
 
                 try {
-                    const existingUser = await prisma.user.findUnique({
+                    const existingUser = await prisma.user.findFirst({
                         where: { email },
                     })
                     if (existingUser) {
